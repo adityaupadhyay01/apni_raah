@@ -1,0 +1,14 @@
+{
+  "frontend": {
+    "skills": ["HTML", "CSS", "JavaScript", "Git", "React"],
+    "roadmap": [
+      "Learn HTML & CSS basics",
+      "Master JavaScript",
+      "Build 2 projects",
+      "Learn React",
+      "Build portfolio"
+    ],
+    "timeToReady": "4-6 months",
+    "competition": "High"
+  }
+}

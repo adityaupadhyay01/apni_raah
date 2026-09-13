@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* ==================================================================
+   ApniRaah Design System — tokens
+   ================================================================== */
+@theme {
+  /* surfaces */
+  --color-canvas: #f7f2e9;
+  --color-canvas-deep: #efe6d8;
+  --color-surface: #fffdf9;
+  --color-surface-muted: #fbf6ed;
+  --color-line: #e7ded2;
+  --color-line-soft: #f1e9de;
+
+  /* text */
+  --color-ink: #292722;
+  --color-ink-soft: #756f66;
+  --color-ink-faint: #9a9287;
+
+  /* primary — terracotta */
+  --color-brand: #c86b4a;
+  --color-brand-deep: #a9543b;
+  --color-brand-soft: #f4e3da;
+
+  /* secondary — sage */
+  --color-sage: #789178;
+  --color-sage-soft: #e8efe7;
+
+  /* light terracotta — secondary warm accent */
+  --color-peach: #d4805c;
+  --color-peach-soft: #f7e8df;
+
+  /* deep clay — grounding accent */
+  --color-lilac: #8c5340;
+  --color-lilac-soft: #f2e4de;
+
+  /* deep sage — quiet counterpoint to the terracotta */
+  --color-sky: #5f7a60;
+  --color-sky-soft: #e4ede3;
+
+  /* warm red — errors and critical gaps */
+  --color-rose: #b85c4e;
+  --color-rose-soft: #f8e5e0;
+
+  /* warm gold */
+  --color-amber: #d2a34a;
+  --color-amber-soft: #f7eeda;
+
+  /* shape */
+  --radius-card: 22px;
+  --radius-xl2: 18px;
+
+  /* type */
+  --font-display: "Plus Jakarta Sans", "Noto Sans Devanagari", ui-sans-serif,
+    system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Noto Sans Devanagari", ui-sans-serif,
+    system-ui, sans-serif;
+}
+
+/* ==================================================================
+   Base
+   ================================================================== */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.002em;
+}
+
+:where(html[lang="hi"]) body {
+  /* Devanagari needs a touch more line height to breathe */
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+}
+
+/* display sizes carry the tightening; small headings stay relaxed */
+h1 {
+  letter-spacing: -0.021em;
+  font-weight: 700;
+}
+h2 {
+  letter-spacing: -0.015em;
+  font-weight: 700;
+}
+h3,
+h4 {
+  letter-spacing: -0.008em;
+  font-weight: 600;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* ==================================================================
+   Reusable surface utilities
+   ================================================================== */
+@utility sm-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow:
+    0 1px 1.5px rgba(41, 39, 34, 0.035),
+    0 10px 24px -16px rgba(41, 39, 34, 0.16);
+}
+
+@utility sm-card-flat {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+@utility sm-inset {
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-xl2);
+}
+
+@utility sm-eyebrow {
+  font-size: 0.665rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
+@utility sm-hairline {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-line),
+    transparent
+  );
+  height: 1px;
+}
+
+/* soft page-level ambience used behind hero sections */
+@utility sm-glow {
+  background:
+    radial-gradient(
+      60% 80% at 12% 0%,
+      rgba(200, 107, 74, 0.085) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      50% 70% at 92% 8%,
+      rgba(210, 163, 74, 0.1) 0%,
+      transparent 60%
+    );
+}
+
+/* ==================================================================
+   Motion
+   ================================================================== */
+@keyframes sm-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility sm-rise {
+  animation: sm-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes sm-sheen {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==================================================================
+   Scrollbar
+   ================================================================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #ddd2c2;
+  border-radius: 999px;
+  border: 3px solid var(--color-canvas);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9bca8;
+}
